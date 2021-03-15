@@ -41,7 +41,7 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
 			Long dias = ApontamentoHelper.calculaDiasSemApontar(dataUltimoApontamento);
 			if(ApontamentoHelper.isApontamentoEmAtraso(dias)) {
 				System.out.println("Usuário: " + usuario.getNome() + "Ultimo apontamento: " + dataUltimoApontamento);
-				MensagemEmailHelper.montaEmail(mailContentBuilder, emailService, usuario);
+				MensagemEmailHelper.montaEmail(mailContentBuilder, emailService, usuario, dias);
 			}	
 		}
 	}

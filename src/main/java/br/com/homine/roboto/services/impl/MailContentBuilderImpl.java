@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import br.com.homine.roboto.helper.MensagemEmailHelper;
 import br.com.homine.roboto.model.Usuario;
 import br.com.homine.roboto.services.MailContentBuilder;
 
@@ -14,9 +15,10 @@ public class MailContentBuilderImpl implements MailContentBuilder{
     @Autowired
     TemplateEngine templateEngine;
 
-    public String generateMailContent(Usuario usuario) {
+    public String generateMailContent(Usuario usuario, Long dias) {
         Context context = new Context();
         context.setVariable("nome", usuario.getNome());
-        return templateEngine.process("emails/mailTemplate", context);
+        context.setVariable("dias", dias);
+        return templateEngine.process(MensagemEmailHelper.escolheLayout( dias ), context);
     }
 }

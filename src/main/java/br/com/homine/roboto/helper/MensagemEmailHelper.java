@@ -6,12 +6,22 @@ import br.com.homine.roboto.services.MailContentBuilder;
 
 public class MensagemEmailHelper {
 
-	public static String escolheLayout(int diasDeAtraso ) {
-		return "emails/mailTemplate";
+	public static String escolheLayout(Long diasDeAtraso) {
+
+		if (diasDeAtraso > 10) {
+			return "emails/mailTemplateRaivoso";
+		}
+
+		if (diasDeAtraso > 5) {
+			return "emails/mailTemplateChateado";
+		}
+
+		return "emails/mailTemplateBom";
 	}
-	
-	public static void montaEmail(MailContentBuilder mailContentBuilder, EmailService emailService, Usuario usuario) {
-		String message = mailContentBuilder.generateMailContent(usuario);
-		emailService.sendComplexMessage(usuario.getEmail(),"Apontamento de horas TimeSheet", message);
+
+	public static void montaEmail(MailContentBuilder mailContentBuilder, EmailService emailService, Usuario usuario,
+			Long dias) {
+		String message = mailContentBuilder.generateMailContent(usuario, dias);
+		emailService.sendComplexMessage(usuario.getEmail(), "Apontamento de horas TimeSheet", message);
 	}
 }
