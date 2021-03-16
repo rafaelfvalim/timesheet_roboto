@@ -8,8 +8,8 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Data
-@Table(name = "acp_profissionais")
 @Entity
+@Table(name = "acp_profissionais")
 public class Profissional {
 	@Id
 	@Column(name = "profissionalId")
@@ -17,5 +17,5 @@ public class Profissional {
 
 	@Column(name = "Ativo")
 	private Boolean ativo;
-
+	
 }

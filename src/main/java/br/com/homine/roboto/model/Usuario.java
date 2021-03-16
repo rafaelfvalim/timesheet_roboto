@@ -21,4 +21,6 @@ public class Usuario {
 	@Column(name = "Email" )
 	private String email;
 	
+	@Column(name = "ProfissionalID")
+	private Long profissionalId;
 }

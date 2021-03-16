@@ -14,6 +14,7 @@ public class ApontamentoHelper {
 
 	public static Long calculaDiasSemApontar(Date dataUltimoApontamento) {
 		LocalDate ultimoApontamento = DateHelper.dateToLocalDate(dataUltimoApontamento);
+		
 		LocalDate dataAtual = LocalDate.now();
 		if ((ultimoApontamento != null) && (dataAtual != null)) {
 			return ChronoUnit.DAYS.between(ultimoApontamento, dataAtual);
